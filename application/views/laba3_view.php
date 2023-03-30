@@ -16,25 +16,39 @@
 
 
         echo "<br><strong>Задание 2</strong><br>";
-        $product1 = "Товар 1";
-        $product2 = "Товар 2";
-        $product3 = "Товар 3";
-        $price1 = 100;
-        $price2 = 200;
-        $price3 = 150;
+        $products = array(
+            array("name" => "RTX 3050", "price" => 180),
+            array("name" => "RTX 3060", "price" => 220),
+            array("name" => "RTX 3070", "price" => 300)
+        );
 
-        if ($price1 > $price2 && $price1 > $price3) {
-            $max_product = $product1;
-            $max_price = $price1;
-        } elseif ($price2 > $price3) {
-            $max_product = $product2;
-            $max_price = $price2;
-        } else {
-            $max_product = $product3;
-            $max_price = $price3;
+        $max_product = $products[0]['name'];
+        $max_price = $products[0]['price'];
+
+        foreach ($products as $product) {
+            if ($product['price'] > $max_price) {
+                $max_product = $product['name'];
+                $max_price = $product['price'];
+            }
         }
 
-        echo "Самый дорогой товар: " . $max_product . " по цене " . $max_price;
+        // if ($products[0]['price'] > $products[1]['price']) {
+        //     $max_product = $products[0]['name'];
+        //     $max_price = $products[0]['price'];
+        // }
+        // elseif ($products[0]['price'] > $products[2]['price']) {
+        //     $max_product = $products[0]['name'];
+        //     $max_price = $products[0]['price'];
+        // }
+        // elseif ($products[1]['price'] > $products[2]['price']) {
+        //     $max_product = $products[1]['name'];
+        //     $max_price = $products[1]['price'];
+        // }
+        // else{
+        //     $max_product = $products[2]['name'];
+        //     $max_price = $products[2]['price'];
+        // }
+        echo "<p>Самый дорогой товар: " . $max_product . " (цена: " . $max_price . ")</p>";
 
         echo "<br><strong>Задание 3</strong><br>";
 
@@ -46,18 +60,68 @@
                 echo $i . " ";
             }
         }
-          
+
         echo "<br><strong>Задание 4</strong><br>";
-        foreach ($schedule as $day) {
-            for ($i = 0; $i < $day['lessons']; $i++) {
-              if ($day['subject'][$i] == 'Информатика') {
-                echo "День: " . $day['day'] . "<br>";
-                echo "Время: " . $day['time'][$i] . "<br>";
-                echo "Предмет: " . $day['subject'][$i] . "<br>";
-                echo "Преподаватель: " . $day['teacher'][$i] . "<br><br>";
-              }
+
+        foreach ($data as $day) {
+            echo "<h3>" . $day['day'] . "</h3>";
+            foreach ($day['lessons'] as $lesson) {
+                if ($lesson['subject'] == "Информатика") {
+                    echo "<p>Предмет: " . $lesson['subject'] . "</p>";
+                    echo "<p>Преподаватель: " . $lesson['teacher'] . "</p>";
+                    echo "<p>Время: " . $lesson['start_time'] . " - " . $lesson['end_time'] . "</p>";
+                }
             }
-          }
+        }
+
+        echo "<br><strong>Задание 5</strong><br>";
+
+        function get_string($str, $font_size)
+        {
+            return "<span style='font-size:{$font_size}px;'>" . $str . "</span><br>";
+        }
+
+        echo get_string("Hello World", 36);
+
+        echo "<br><strong>Задание 6</strong><br>";
         ?>
+
+        <form method="post" action="laba3">
+            <label for="name">Имя:</label>
+            <input type="text" name="name" id="name"><br>
+
+            <label for="age">Возраст:</label>
+            <input name="age" id="age"><br>
+
+            <label for="amount">Сумма заказа:</label>
+            <input name="order" id="amount"><br>
+
+            <input type="submit" value="Отправить">
+        </form>
+
+        <?php
+
+
+
+
+
+        $name = $_POST["name"];
+        $age = $_POST["age"];
+        $order = $_POST["order"];
+        if (!empty($name) && !empty($age) && !empty($order)) {
+            echo "Здравствуйте, $name! Спасибо за заказ!";
+
+            if ($order > 5000) {
+                $discount = $order * 0.1;
+                $final_price = $order - $discount;
+                echo " Так как сумма вашего заказа превысила 5000 рублей, Вы получаете 10 %-ную скидку в размере $discount рублей. Сумма вашего заказа со скидкой: $final_price рублей.";
+            }
+        } else {
+            echo "Пожалуйста, заполните все поля формы.";
+        }
+        
+
+        ?>
+
     </section>
 </main>

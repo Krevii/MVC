@@ -714,6 +714,8 @@ input::placeholder{
     display: flex;
     flex-grow: 1;
     flex-wrap: wrap;
+    align-content: flex-start;
+    
     justify-content: space-between;
     margin: 5px 20px 20px 20px;
 
@@ -730,12 +732,17 @@ input::placeholder{
 }
 .forum-header-title{
     font-size: 20px;
+    --line-clamp: 3;
+    display: -webkit-box;
     overflow: hidden;
+    -webkit-line-clamp: var(--line-clamp);
     word-wrap: break-word;
     font-weight: bold;
+    -webkit-box-orient: vertical;
+
 }
 .forum-content-preview{
-    height: 50%;
+    /* height: 50%; */
     border-radius: 7px 7px 0px 0px ;
     background-color: var(--accent-color);
     font-size: var(--font-size-h2);
