@@ -16,7 +16,7 @@ require_once './application/views/header.php'
 
 				</div>
 			</div>
-			<form method="GET" autocomplete="off" action="http://mvc/feedback/getUsers">
+			<form method="GET" autocomplete="off" action="/feedback">
 				<label>TELL US ABOUT YOUR SUGGESTION OR IDEA TO MAKE THE GAME BETTER</label>
 				<input type="text" name="header-text" autofocus required placeholder="Header text">
 				<input type="text" name="offer" required placeholder="Offer">
@@ -25,7 +25,7 @@ require_once './application/views/header.php'
 				<input type="submit" value="Send">
 
 				<?php
-				echo "<h3 class='text-h2'>" . "красноглазое.чмо(".$data.") нахуй" . "</h3>";
+				echo "<h3 class='text-h2'>" . "(".$data.")" . "</h3>";
 				// foreach ($data as $value) {
 				// }
 				?>

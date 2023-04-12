@@ -1,7 +1,7 @@
 <header id="header">
         <div class="bone">
             <div>
-                <a href="http://mvc/main">
+                <a href="/">
                     <img class="logoV" src="../../image/Logo-Vertical.png" alt="logo" />
                 </a>
             </div>
@@ -17,10 +17,10 @@
 
         <div class="select-menu">
             <div class="root-nav-item">
-                <a href="http://mvc/main" class="nav-item">general</a>
-                <a href="http://mvc/feedback" class="nav-item">Feedback</a>
-                <a href="login.html" class="nav-item">login</a>
-                <a href="http://mvc/blogs" class="nav-item">blog</a>
+                <a href="/" class="nav-item">general</a>
+                <a href="/feedback" class="nav-item">Feedback</a>
+                <a href="/login" class="nav-item">login</a>
+                <a href="/blogs" class="nav-item">blog</a>
                 
             </div>
             <div class="root-block">

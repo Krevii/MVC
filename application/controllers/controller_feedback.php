@@ -8,9 +8,10 @@ class Controller_Feedback extends Controller
 		$this->view = new View();
 	}
 	
-	function action_index()
+	function action_index($data = null)
 	{
-		$data = $this->model->get_data();		
+		//$data = $this->model->get_data();
+		$data = $_GET["header-text"];		
 		$this->view->generate('feedback_view.php', 'template_view.php', $data);
 	}
 	function action_setUser()
