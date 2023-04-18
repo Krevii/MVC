@@ -12,7 +12,7 @@ class Model_Registration extends Model
         // Экранируем значения полей и заключаем их в кавычки
         $user_name = $conn->real_escape_string($data['user_name']);
         $email = $conn->real_escape_string($data['email']);
-        $password = $conn->real_escape_string($data['password']);
+        $password =  $conn->real_escape_string($data['password']);
         $role = $conn->real_escape_string($data['role']);
 
         // Проверяем, есть ли пользователь с таким именем или адресом электронной почты
@@ -24,7 +24,8 @@ class Model_Registration extends Model
             echo "Пользователь с таким именем или адресом электронной почты уже существует.";
         } else {
             // Пользователя не существует, добавляем его в базу данных
-            $insert_user_sql = "INSERT INTO users(user_name, email, password, role) VALUES ('{$user_name}', '{$email}', '{$password}', '{$role}')";
+            $hashed_password = password_hash($password, PASSWORD_ARGON2I);
+            $insert_user_sql = "INSERT INTO users(user_name, email, password, role) VALUES ('{$user_name}', '{$email}', '{$hashed_password}', '{$role}')";
 
             if ($conn->query($insert_user_sql) === TRUE) {
                 echo "New record created successfully";

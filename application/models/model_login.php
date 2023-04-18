@@ -13,19 +13,32 @@ class Model_Login extends Model
         $email = $conn->real_escape_string($data['email']);
         $password = $conn->real_escape_string($data['password']);
 
-        // Ищем пользователя по имени пользователя и паролю
-        $sql = "SELECT * FROM users WHERE email = '{$email}' AND password = '{$password}'";
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM users WHERE email = '{$email}'";
+        $result = $conn->query($sql); 
 
         if ($result->num_rows > 0) {
-            // Если пользователь найден, возвращаем true 
-            return true;
-        } else {
-            // Если пользователь не найден, возвращаем false
-            return false;
+            $userData = $result->fetch_assoc();
+
+            if (password_verify($password, $userData["password"])) {
+                session_start();
+                
+                include "./application/core/user.php";
+                $user = new User($userData);
+                $_SESSION["user"] = serialize($user);
+                $_SESSION["a"] = "testtest";
+                
+                $user = unserialize($_SESSION["user"]);
+                echo $user->getId();
+                header("Location: /");
+
+                return true;
+            } else {
+                // Если пользователь не найден, возвращаем false
+                echo "Неправильное имя пользователя или пароль.";
+                return false;
+            }
         }
 
         $conn->close();
     }
-
 }

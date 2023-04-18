@@ -59,7 +59,9 @@ class Route
 					Route::ErrorPage404();
 				}
 
-
+				if (empty($matches["id"])) {
+					$matches["id"] = -1;
+				}
 				$controller = new $controller_name();
 				$controller->$methodName($matches["id"]);
 				return;
@@ -73,7 +75,7 @@ class Route
 		//echo "Page not found";
 	}
 
-	function ErrorPage404()
+	static function ErrorPage404()
 	{
 		$host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 		header('HTTP/1.1 404 Not Found');

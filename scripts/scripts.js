@@ -9,11 +9,11 @@ function update() {
     ticking = false;
 
     for (let i = 0; i < groundScroll.length; i++) {
-        groundScroll[0].style = `transform: translate3d(${0}px,${LastScrollY/5}px,0px); filter: grayscale(0);`;
+        groundScroll[0].style = `transform: translate3d(${0}px,${LastScrollY / 5}px,0px); filter: grayscale(0);`;
     }
     for (let i = 0; i < hederTextUp.length; i++) {
         hederTextUp[i].style = `transform: translate3d(${0}px,${(-LastScrollY) + 35}px,0px);`
-        
+
     }
 }
 
@@ -24,7 +24,7 @@ function onScroll() {
 
 function requestTick() {
     if (!ticking) {
-        requestAnimationFrame(update)    
+        requestAnimationFrame(update)
     }
 
     ticking = true;
@@ -41,29 +41,29 @@ let sliderScroll = document.getElementsByClassName("slider");
 let header = document.getElementById("header");
 let scrollRoadMap = 0;
 
-let animationScroll = ()=>{
+let animationScroll = () => {
     let animionStartPositon = (window.innerHeight / window.innerHeight) + window.scrollY;
     //main text
-    if (cardSection[0] !== undefined) {        
+    if (cardSection[0] !== undefined) {
         if (animionStartPositon >= (cardSection[0].offsetTop - cardSection[0].offsetHeight)) {
             cardSection[0].classList.add("card-section-active");
             // console.log(cardSection[0].offsetTop - cardSection[0].offsetHeight);
         }
-        else{
-            cardSection[0].classList.remove("card-section-active"); 
+        else {
+            cardSection[0].classList.remove("card-section-active");
         }
     }
     //about scroll content
-    if (textContain[0] !== undefined) {        
+    if (textContain[0] !== undefined) {
         if (animionStartPositon >= (textContain[0].offsetTop - textContain[0].offsetHeight)) {
             textContain[0].classList.add("text-contain-active");
         }
-        else{
-            textContain[0].classList.remove("text-contain-active"); 
+        else {
+            textContain[0].classList.remove("text-contain-active");
         }
     }
     //roadmap scroll
-    if ((HeaderRoadMap[0] || sliderScroll[0]) !== undefined) {      
+    if ((HeaderRoadMap[0] || sliderScroll[0]) !== undefined) {
         let a = roadMap[0].offsetTop - roadMap[0].offsetHeight
         let b = a * 2.5;
 
@@ -79,11 +79,11 @@ let animationScroll = ()=>{
             if (GetScrollDirection(tempScrollY) > 0) {
                 sliderScroll[0].style = `transform: translate(${HeaderRoadMap[0].offsetTop - scrollY}px, ${0}px);`
             }
-            else{
+            else {
                 sliderScroll[0].style = `transform: translate(${HeaderRoadMap[0].offsetTop - scrollY}px, ${0}px);`
             }
         }
-        else{
+        else {
             tempScrollY = scrollY;
             header.classList.remove("header-active");
         }
@@ -93,12 +93,12 @@ let animationScroll = ()=>{
 
 }
 
-function GetScrollDirection(scrollYPos){
+function GetScrollDirection(scrollYPos) {
     let direction = 1;
     if (scrollYPos > scrollY) {
         direction = -1;
     }
-    return direction; 
+    return direction;
 }
 
 // $(".line-root").hover(function () {
@@ -110,18 +110,18 @@ function GetScrollDirection(scrollYPos){
 //     }
 // );
 let toggle = true;
-$(".line-root").click(function(){
-    if (toggle){
-        $(".line-menu:nth-child(odd)").first().css({"transform":"rotate(45deg)", "top":"+=7.5px"});
-        $(".line-menu:nth-child(odd)").last().css({"transform":"rotate(135deg)", "top":"-=7.5px"});
-        $(".line-menu:nth-child(even)").css("opacity","0");
-        
-        $(".select-menu").css({"transform":"scale(1)", "opacity":"1"})
+$(".line-root").click(function () {
+    if (toggle) {
+        $(".line-menu:nth-child(odd)").first().css({ "transform": "rotate(45deg)", "top": "+=7.5px" });
+        $(".line-menu:nth-child(odd)").last().css({ "transform": "rotate(135deg)", "top": "-=7.5px" });
+        $(".line-menu:nth-child(even)").css("opacity", "0");
+
+        $(".select-menu").css({ "transform": "scale(1)", "opacity": "1" })
         toggle = !toggle;
     }
-    else{
-        $(".line-menu").css({"transform":"rotate(0deg)", "opacity": "1", "top":"0px"});
-        $(".select-menu").css({"transform":"scale(0)", "opacity":"0"})
+    else {
+        $(".line-menu").css({ "transform": "rotate(0deg)", "opacity": "1", "top": "0px" });
+        $(".select-menu").css({ "transform": "scale(0)", "opacity": "0" })
         toggle = !toggle;
     }
 })
@@ -131,12 +131,12 @@ let isToggleTheme = (localStorage.getItem("isToggleTheme") === 'true');
 
 function toggleTheme() {
     localStorage.setItem("isToggleTheme", isToggleTheme);
-    
+
     if (isToggleTheme) {
         $("body").addClass("dark");
         isToggleTheme = !isToggleTheme;
     }
-    else{
+    else {
         $("body").removeClass("dark");
         isToggleTheme = !isToggleTheme;
     }
@@ -145,7 +145,7 @@ function toggleTheme() {
 
 $(".theme-switch").bind("click", function (e) {
     toggleTheme();
-    e.preventDefault();    
+    e.preventDefault();
 });
 
 
@@ -154,12 +154,18 @@ animationScroll();
 onScroll();
 let table = document.getElementsByClassName("table");
 
-document.addEventListener("DOMContentLoaded", (e)=>{
+function toggleMenu() {
+    var menu = document.getElementById('sort-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+
+document.addEventListener("DOMContentLoaded", (e) => {
     if (table[0] !== undefined) {
         table[0].classList.add("table-active");
     }
     tempScrollY = scrollY;
-    window.addEventListener("scroll", (e)=>{
+    window.addEventListener("scroll", (e) => {
         onScroll();
         animationScroll();
     });

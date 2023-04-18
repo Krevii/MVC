@@ -21,7 +21,7 @@
                     <input name="user_name" autocomplete="on" autofocus required placeholder="User name">
                     <input type="email" name="email" autocomplete="on" autofocus required placeholder="E-mail">
                     <input type="password" autocomplete="on" name="password" required placeholder="password">
-                    <input type="submit" value="Sing Up">
+                    <input type="submit" name="submit" value="Sing Up">
                     <p class="text-h3">Уже зарегистрированы? <a style="text-decoration: underline;" class="text-h3" href="/login">Войти</a></p>
                 </form>
             </div>
