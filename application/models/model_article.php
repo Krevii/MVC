@@ -28,7 +28,6 @@ class Model_Article
     }
     public function create_article($data = null)
     {
-
         $conn = new mysqli("127.0.0.1", "root", "", "virtups");
 
         if ($conn->connect_error) {

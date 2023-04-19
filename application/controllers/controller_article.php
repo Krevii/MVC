@@ -13,21 +13,25 @@ class Controller_Article extends Controller
         if ($articleId != null) {
             $result = $this->model->get_article($articleId);
 
-            $data = "<h1>{$result['title']}</h1>{$result['content']}";
+            $data = "<h1>{$result['title']}</h1><br><h2>{$result['datatime']}<//h2>{$result['content']}";
         }
 
         $this->view->generate("article_view.php", "template_view.php", $data);
     }
     function action_create()
     {
+        session_start();
         if (empty($_SESSION['user'])) {
             header("Location: /login");
+            return;
         }
-
+        
+        include "./application/core/user.php";
         $user = unserialize($_SESSION['user']);
 
-        if (isset($_POST['article_id'])) {
-            $this->model->create_article();
+        if ($user->getId() == 1 && isset($_POST["title"]) && isset($_POST["content"])) {;
+            $this->model->create_article($articleId);
+
         }
 
         $data = "<form action='/blogs/create' method='post' class='content-form'>
@@ -50,7 +54,7 @@ class Controller_Article extends Controller
         include "./application/core/user.php";
         $user = unserialize($_SESSION['user']);
 
-        if (isset($articleId) && $user->getId() == 6 && isset($_POST["title"]) && isset($_POST["content"])) {
+        if (isset($articleId) && $user->getId() == 1 && isset($_POST["title"]) && isset($_POST["content"])) {
             $this->model->edit_article($articleId);
             
         }

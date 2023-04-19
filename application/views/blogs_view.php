@@ -1,5 +1,6 @@
 <?php
-require_once './application/views/header.php'
+require_once './application/views/header.php';  
+
 ?>
 <main class="forum-root">
     <section class="search-block">
@@ -13,7 +14,7 @@ require_once './application/views/header.php'
     </section>
     <section class="forum-place">
         <?php
-            
+            echo $data;
         ?>
         <div class="forum-block">
             <div class="forum-content-preview">
