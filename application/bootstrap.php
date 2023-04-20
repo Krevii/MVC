@@ -13,6 +13,7 @@ $router->addRoute('/404', '404@index');
 $router->addRoute('/blogs', 'blogs@index');
 $router->addRoute('/blogs/{id}/view', 'article@index');
 $router->addRoute('/blogs/{id}/edit', 'article@edit');
+$router->addRoute('/blogs/{id}/delete', 'article@delete');
 $router->addRoute('/blogs/create', 'article@create');
 $router->addRoute('/feedback', 'feedback@index');
 $router->addRoute('/login', 'login@login');

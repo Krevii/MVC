@@ -25,9 +25,6 @@ class Controller_Registration extends Controller
             $this->model->register_user($data);
                 
         }
-        else{
-            echo "Не все поля заполнены";
-        }
 
         
         $this->view->generate('registration_view.php', 'template_view.php');

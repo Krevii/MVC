@@ -126,6 +126,24 @@ $(".line-root").click(function () {
     }
 })
 
+// function sendSearchRequest(data = "ss") {
+
+//     let dataarr = {'search': data}
+//     $.ajax({
+//         type: "POST",
+//         url: "/blogs",
+//         data: dataarr,
+//         success: function (dataarr) {
+//             console.log(dataarr);
+//             $(document).html(dataarr)
+//         }
+//     });
+// }
+
+// $("#search-input").on("keyup", function () {
+//     sendSearchRequest($("#search-input").val())
+// });
+
 
 let isToggleTheme = (localStorage.getItem("isToggleTheme") === 'true');
 
